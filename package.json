@@ -12,7 +12,16 @@
     "lint:style": "stylelint \"./**/*.{css,less,vue,html}\" --fix"
   },
   "dependencies": {
-    "vue": "^3.2.37"
+    "@element-plus/icons-vue": "^2.0.10",
+    "@vueuse/core": "^9.3.1",
+    "axios": "^1.1.3",
+    "element-plus": "^2.2.19",
+    "mockjs": "^1.1.0",
+    "reset-css": "^5.0.1",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.5",
+    "vuex": "^4.1.0",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.0",
@@ -32,6 +41,8 @@
     "stylelint-config-standard-vue": "^1.0.0",
     "stylelint-less": "^1.0.6",
     "stylelint-order": "^5.0.0",
+    "unplugin-auto-import": "^0.11.2",
+    "unplugin-vue-components": "^0.22.8",
     "vite": "^3.1.0"
   }
 }

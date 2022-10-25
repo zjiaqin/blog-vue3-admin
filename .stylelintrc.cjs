@@ -42,6 +42,7 @@ module.exports = {
         ignorePseudoClasses: ['deep']
       }
     ],
+
     // 指定样式的排序
     'order/properties-order': [
       'position',
@@ -115,6 +116,12 @@ module.exports = {
       'text-shadow',
       'resize',
       'transition'
-    ]
+    ],
+    indentation: null,
+    'custom-property-empty-line-before': null,
+    'declaration-block-trailing-semicolon': null,
+    'declaration-colon-newline-after': null,
+    'value-list-comma-newline-after': null,
+    'string-quotes': null
   }
 }
