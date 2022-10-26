@@ -11,7 +11,10 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use((req) => {
   //自定义header 为每次请求添加token
-
+  if (localStorage.getItem('token')) {
+    req.headers['Authorization'] =
+      'Bearer ' + JSON.parse(localStorage.getItem('token'))
+  }
   return req
 })
 // 响应拦截器

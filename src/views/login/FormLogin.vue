@@ -53,11 +53,18 @@
 
 <script setup>
 import { User, Lock, Postcard } from '@element-plus/icons-vue'
-import { getCurrentInstance, reactive, ref, inject } from 'vue'
+import { getCurrentInstance, reactive, ref, inject, computed } from 'vue'
 import envConfig from '@/config'
-
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+const store = useStore()
+const router = useRouter()
 const { proxy } = getCurrentInstance()
 
+// 动态路由表
+const routerList = computed(() => {
+  return store.state.menu.menuList
+})
 const loginFormRef = ref()
 // 登录表单
 const loginForm = reactive({
@@ -81,10 +88,19 @@ const login = async () => {
     if (valid) {
       try {
         const data = await proxy.$api.userLogin(loginForm)
+
         // eslint-disable-next-line no-undef
         ElMessage.success('登录成功')
+        // 存储token及个人信息。
+        store.commit('user/setToken', data.token)
+        store.commit('user/setUserInfo', data.user)
+        store.commit('menu/getMenuList', data.user.roleId.menuList)
+        addRoute()
+        // 登录成功跳转至管理页面，由于登录界面是管理系统唯一入口，不用考虑返回原来的页面
+        router.push({ path: '/' })
+        // 获取菜单列表
+
         resetForm()
-        return data
       } catch (error) {
         return
       }
@@ -111,6 +127,12 @@ const changeCode = () => {
 const panel = inject('panel')
 const toReg = () => {
   panel.value = 'reg'
+}
+// 增加路由
+const addRoute = () => {
+  routerList.value.forEach((item) => {
+    router.addRoute(item)
+  })
 }
 </script>
 
