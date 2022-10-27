@@ -4,9 +4,11 @@
       <common-aside></common-aside>
       <el-container class="r-container">
         <common-header />
-        <el-main>
-          <router-view></router-view>
-        </el-main>
+        <el-scrollbar>
+          <el-main>
+            <router-view></router-view>
+          </el-main>
+        </el-scrollbar>
       </el-container>
     </el-container>
   </div>
@@ -28,5 +30,9 @@ import CommonHeader from '@/components/CommonHeader.vue'
       flex-direction: column;
     }
   }
+}
+
+.el-main {
+  background-color: var(--el-bg-color-page);
 }
 </style>

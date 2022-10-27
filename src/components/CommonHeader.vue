@@ -36,7 +36,7 @@
             <el-dropdown-item
               ><el-icon><CollectionTag /></el-icon>Github</el-dropdown-item
             >
-            <el-dropdown-item
+            <el-dropdown-item @click="logout"
               ><el-icon><SwitchButton /></el-icon>退出登录</el-dropdown-item
             >
           </el-dropdown-menu>
@@ -52,6 +52,8 @@ import { UserFilled } from '@element-plus/icons-vue'
 
 import { useDark } from '@vueuse/core'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const store = useStore()
 const isDark = useDark()
 
@@ -62,14 +64,21 @@ const isDark = useDark()
 const changeCollapse = () => {
   store.commit('menu/toggleCollapse')
 }
+// 登出
+const logout = () => {
+  store.commit('user/clearAll')
+  router.push({ path: '/login' })
+}
 </script>
 <style scoped lang="less">
 .el-header {
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 60px;
+  box-shadow: 0 3px 0 -2px rgb(0 0 0 / 10%);
 
   .r-content {
     display: flex;

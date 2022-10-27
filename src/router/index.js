@@ -1,21 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import { asyncRoutes } from './asyncRoutes.js'
 const routes = [
-  {
-    path: '/',
-    component: () => import('@/views/Main.vue'),
-    children: [
-      {
-        path: '/',
-        name: 'home',
-        component: () => import('@/views/home/Home.vue')
-      }
-    ]
-  },
   {
     path: '/login',
     component: () => import('@/views/login/Login.vue')
-  }
+  },
+  ...asyncRoutes
 ]
 
 const router = createRouter({

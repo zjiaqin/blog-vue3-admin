@@ -1,7 +1,7 @@
 import axios from 'axios'
 // import { ElMessage } from 'element-plus'
 import config from '@/config'
-
+import store from '@/store'
 const service = axios.create({
   baseURL: config.baseApi,
   timeout: 1000 * 10,
@@ -11,9 +11,8 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use((req) => {
   //自定义header 为每次请求添加token
-  if (localStorage.getItem('token')) {
-    req.headers['Authorization'] =
-      'Bearer ' + JSON.parse(localStorage.getItem('token'))
+  if (store.state.user.token) {
+    req.headers['Authorization'] = 'Bearer ' + store.state.user.token
   }
   return req
 })
